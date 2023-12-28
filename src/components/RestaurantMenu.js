@@ -1,8 +1,9 @@
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
-import {MenuShimmer} from "./Shimmer";
+import { MenuShimmer } from "./Shimmer";
 import { IMG_URL } from "../config";
 import About from "./About";
+import useRestaurantMenu from "../utils/useRestaurantMenu";
 
 // function filterfood(searchfood,resTempMenu ){
 //   const filterdata = resTempMenu.filter((food)=>{
@@ -13,29 +14,16 @@ import About from "./About";
 const RestaurantMenu = () => {
   const params = useParams();
   const { id } = params;
-  const [restaurant, setRestaurant] = useState([]);
-  const [resTempMenu, setResTempMenu] = useState([]);
+
   const [searchfood, setSearchfood] = useState("");
 
-  useEffect(() => {
-    getRestaurantMenu();
-  }, []);
+  const { restaurant, resTempMenu, setResTempMenu } = useRestaurantMenu(id);
 
-  async function getRestaurantMenu() {
-    const data = await fetch(
-      "https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=12.9639423&lng=77.7125085&restaurantId="+ id
-    );
-    const json = await data.json();
-    setRestaurant(json?.data?.cards[0]?.card?.card?.info);
-    setResTempMenu(
-      json?.data?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards
-    );
-    console.log(json?.data)
-  }
-if(!restaurant || !resTempMenu) return null;
+  if (!restaurant || !resTempMenu) return null;
 
-return (
-  (restaurant.length ===0 ) ? <MenuShimmer/> :(
+  return restaurant.length === 0 ? (
+    <MenuShimmer />
+  ) : (
     <div className="res-menu">
       <div className="res-head">
         <img
@@ -80,12 +68,13 @@ return (
             <div className="menu-food-card">
               <div className="food-details">
                 <h3>{item?.card?.info?.name}</h3>
-                { item?.card?.info?.price ? (
+                {item?.card?.info?.price ? (
                   <h4>Price :₹{item?.card?.info?.price / 100}</h4>
-                ): item?.card?.info?.defaultPrice ? (
+                ) : item?.card?.info?.defaultPrice ? (
                   <h4>Price :₹{item?.card?.info?.defaultPrice / 100}</h4>
-                  ):(
-                    <h4>Price information not available</h4>)}
+                ) : (
+                  <h4>Price information not available</h4>
+                )}
                 <p>{item?.card?.info?.description}</p>
               </div>
               <div className="menu-food-container">
@@ -98,6 +87,6 @@ return (
         ))
       )}
     </div>
-  ));
-}
+  );
+};
 export default RestaurantMenu;
