@@ -24,10 +24,10 @@ const RestaurantMenu = () => {
   return restaurant.length === 0 ? (
     <MenuShimmer />
   ) : (
-    <div className="res-menu">
-      <div className="res-head">
+    <div className="max-w-[800px] mx-auto my-0">
+      <div className=" my-7 mx-0 flex gap-7">
         <img
-          className="res-img"
+          className="w-48 h-48 "
           src={IMG_URL + restaurant?.cloudinaryImageId}
         ></img>
         <div>
@@ -64,9 +64,9 @@ const RestaurantMenu = () => {
       <h1>Menu</h1>
       {Object.values(resTempMenu).map((res) =>
         res?.card?.card?.itemCards?.map((item) => (
-          <div key={item?.card?.info?.id} className="menu-items">
-            <div className="menu-food-card">
-              <div className="food-details">
+          <div key={item?.card?.info?.id} className="flex flex-col py-4 px-0">
+            <div className=" bg-[#e9e9e93b] flex flex-row justify-between py-5 px-0 rounded-md">
+              <div className="">
                 <h3>{item?.card?.info?.name}</h3>
                 {item?.card?.info?.price ? (
                   <h4>Price :₹{item?.card?.info?.price / 100}</h4>
@@ -77,9 +77,12 @@ const RestaurantMenu = () => {
                 )}
                 <p>{item?.card?.info?.description}</p>
               </div>
-              <div className="menu-food-container">
+              <div className=" w-32 h-24 ">
                 {item?.card?.info?.imageId ? (
-                  <img src={IMG_URL + item?.card?.info?.imageId}></img>
+                  <img
+                    className=" w-full h-full bg-cover"
+                    src={IMG_URL + item?.card?.info?.imageId}
+                  ></img>
                 ) : null}
               </div>
             </div>

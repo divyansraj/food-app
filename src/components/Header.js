@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import useOnline from "../utils/useOnline";
 const loggedInUser = () => {
   //authetication api
   return true;
@@ -9,7 +10,7 @@ const Title = () => {
   return (
     <a href="/">
       <img
-        className="logo"
+        className=" w-48 "
         src="https://foodhub.modeltheme.com/wp-content/themes/foodhub/images/logo.png"
         alt="logo"
       />
@@ -20,7 +21,7 @@ const Title = () => {
 const Header = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [theme, setTheme] = useState("light");
-
+  const isonline = useOnline();
   const toggleTheme = () => {
     if (theme === "light") {
       setTheme("dark");
@@ -38,48 +39,70 @@ const Header = () => {
   }, [theme]);
   return (
     <div className="header">
-      <div className="nav-bar">
+      <div className="bg-[#0b1419] flex justify-around items-center p-4">
         <Title />
-        <div className="nav-items">
-          <ul>
-            <li><Link to="/">Home</Link></li>
-            <li>Recipes</li>
-            {/* <li>Pages</li>
-            <li>Blog</li> */}
-            <li><Link to="/contact">Contact</Link></li>
-            <li><Link to="/about">About</Link></li>
-            <li>Cart</li>
+        <div>
+          <ul className="nav-items flex text-white p-1">
+            <li className=" m-2 font-medium cursor-pointer  ">
+              <Link to="/">Home</Link>
+            </li>
+            <li className=" m-2 font-medium cursor-pointer  ">Recipes</li>
+            {/* <li className=" m-2 font-medium cursor-pointer  ">Pages</li>
+            <li className=" m-2 font-medium cursor-pointer  ">Blog</li> */}
+            <li className=" m-2 font-medium cursor-pointer  ">
+              <Link to="/contact">Contact</Link>
+            </li>
+            <li className=" m-2 font-medium cursor-pointer  ">
+              <Link to="/about">About</Link>
+            </li>
+            <li className=" m-2 font-medium cursor-pointer  ">Cart</li>
             {/* <button className="btn">Submit Recipe</button> */}
           </ul>
         </div>
         {isLoggedIn ? (
-          <button className="btn" onClick={() => setIsLoggedIn(false)}>
+          <button
+            className=" p-2 rounded-2xl border-2 border-solid border-white text-white bg-transparent   "
+            onClick={() => setIsLoggedIn(false)}
+          >
             LogIn
           </button>
         ) : (
-          <button className="btn" onClick={() => setIsLoggedIn(true)}>
+          <button
+            className=" p-2 rounded-2xl border-2 border-solid border-white text-white bg-transparent   "
+            onClick={() => setIsLoggedIn(true)}
+          >
             LogOut
           </button>
         )}
-        <button className="mode-theme" onClick={toggleTheme}>{getThemeSVG()}</button>
+        <button className="mode-theme" onClick={toggleTheme}>
+          {getThemeSVG()}
+        </button>
+        <div>{isonline ? "📶" : " ⛔"}</div>
       </div>
-      <div className="hero-section">
+
+      <div
+        className="bg-[url(https://foodhub.modeltheme.com/wp-content/uploads/2020/02/foodhub-slider-main-food-v4.jpg?id=20741)]
+        bg-cover bg-no-repeat h-[50vh] overflow-hidden flex flex-row gap-12 justify-center items-center leading-10 text-white  "
+      >
         <div className="hero-section-left">
-          <h1>It is even better than</h1>
-          <h1>an expensive cookery book </h1>
+          <h1 className=" text-3xl font-semibold">It is even better than</h1>
+          <h1 className=" text-3xl font-semibold">
+            an expensive cookery book{" "}
+          </h1>
           <p>Learn how to make your favorite restaurant’s dishes</p>
         </div>
         <div className="hero-section-right">
-        <div className="search-bar">
+          <div className="flex">
             <input
               type="text"
-              className="input"
+              className=" rounded-l-2xl py-1 px-3 border-2 border-solid outline-none text-black bg-white "
               placeholder="I want to make..."
             ></input>
-            <button className="btn2">Search</button>
+            <button className="rounded-r-2xl py-1 px-3 border-2 border-solid  text-white bg-transparent ">
+              Search
+            </button>
           </div>
         </div>
-        
       </div>
     </div>
   );

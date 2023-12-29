@@ -1,4 +1,40 @@
-* {
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.shimmer {
+  border-radius: 5px;
+  animation: slide 1s infinite;
+}
+@keyframes slide {
+  0% {
+    background-color: rgb(230, 230, 230);
+  }
+  50% {
+    background-color: rgb(214, 214, 214);
+  }
+  100% {
+    background-color: rgb(231, 231, 231);
+  }
+}
+
+/* Dark MOde  */
+.dark {
+  background-color: #000000;
+  color: #c1baba;
+}
+.light {
+  background-color: #fff;
+  color: #333;
+}
+.mode-theme {
+  background: transparent;
+  border: none;
+  font-size: 34px;
+}
+/* Mode Ends */
+
+/* * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -39,16 +75,15 @@ li a {
   font-weight: 600;
   color: white;
   background: transparent;
-}
+} */
 /* .nav-items > ul > li:hover{
     border-style: dotted;
     border-width: 0 0 5px 0;
     border: 0 0 5px 0 dotted white;
 } */
 
-.hero-section {
+/* .hero-section {
   background: url(https://foodhub.modeltheme.com/wp-content/uploads/2020/02/foodhub-slider-main-food-v4.jpg?id=20741);
-  /* background-position:center; */
   background-size: cover;
   background-repeat: no-repeat;
   height: 50vh;
@@ -72,7 +107,7 @@ li a {
 }
 
 /* Hero search bar */
-.search-bar {
+/* .search-bar {
   display: flex;
 }
 .input {
@@ -81,11 +116,11 @@ li a {
   border: 1px solid rgb(103, 98, 98);
   border-right: 0px;
   outline: none;
-}
+} */
 /* Hero Search Bar ends */
 
 /* Search Bar starts */
-.search {
+/* .search {
   width: 100%;
 }
 .search input {
@@ -96,11 +131,11 @@ li a {
   outline: none;
   border-right: 0px;
   margin-bottom: 20px;
-}
+} */
 /* Search Bar starts */
 
 /*All listed Restaurants list starts  */
-.Restraurant {
+/* .Restraurant {
   max-width: 1280px;
   margin: 0 auto;
   padding-top: 20px;
@@ -137,11 +172,11 @@ li a {
 }
 .head {
   margin-bottom: 20px;
-}
+} */
 /*All listed Restaurants list starts  */
 
 /* Restaurant Shimmer Ui starts */
-.h1 {
+/* .h1 {
   width: 400px;
   height: 25px;
 }
@@ -157,50 +192,19 @@ li a {
 }
 .bt {
   margin-bottom: 30px;
-}
-.shimmer {
-  border-radius: 5px;
-  animation: slide 1s infinite;
-}
-@keyframes slide {
-  0% {
-    background-color: rgb(230, 230, 230);
-  }
-  50% {
-    background-color: rgb(214, 214, 214);
-  }
-  100% {
-    background-color: rgb(231, 231, 231);
-  }
-}
+} */
+
 /*Restaurant Shimmer Ui ends */
 
 /* Restaurant Menu Shimmer Ui starts */
-.p{
+/* .p{
   width: 400px;
   height: 20px;
-}
+} */
 /* Restaurant Menu Shimmer Ui ends */
 
-
-/* Dark MOde  */
-.dark {
-  background-color: #000000;
-  color: #c1baba;
-}
-.light {
-  background-color: #fff;
-  color: #333;
-}
-.mode-theme {
-  background: transparent;
-  border: none;
-  font-size: 34px;
-}
-/* Mode Ends */
-
 /* res menu starts  */
-.res-head {
+/* .res-head {
   margin: 30px 0;
   display: flex;
   gap: 25px;
@@ -232,5 +236,5 @@ li a {
 .menu-food-container > img {
   width: 118px;
   height: 96px;
-}
+} */
 /* res menu ends  */
