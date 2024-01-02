@@ -39,14 +39,15 @@ const Header = () => {
   }, [theme]);
   return (
     <div className="header">
-      <div className="bg-[#0b1419] flex justify-around items-center p-4">
+      <div className="bg-[#0b1419] flex justify-between items-center p-4 px-10">
         <Title />
         <div>
           <ul className="nav-items flex text-white p-1">
             <li className=" m-2 font-medium cursor-pointer  ">
               <Link to="/">Home</Link>
             </li>
-            <li className=" m-2 font-medium cursor-pointer  ">Recipes</li>
+            <li className=" m-2 font-medium cursor-pointer  ">
+            <Link to="/recipes">Recipes</Link></li>
             {/* <li className=" m-2 font-medium cursor-pointer  ">Pages</li>
             <li className=" m-2 font-medium cursor-pointer  ">Blog</li> */}
             <li className=" m-2 font-medium cursor-pointer  ">
@@ -55,20 +56,24 @@ const Header = () => {
             <li className=" m-2 font-medium cursor-pointer  ">
               <Link to="/about">About</Link>
             </li>
+            <li className=" m-2 font-medium cursor-pointer  ">
+              <Link to="/instamart">InstaMart</Link>
+            </li>
             <li className=" m-2 font-medium cursor-pointer  ">Cart</li>
             {/* <button className="btn">Submit Recipe</button> */}
           </ul>
         </div>
+        <div className=" w-52 flex justify-center items-center gap-5">
         {isLoggedIn ? (
           <button
-            className=" p-2 rounded-2xl border-2 border-solid border-white text-white bg-transparent   "
+            className="py-1 px-5 rounded-sm border-2 border-solid border-gray-500 text-white bg-transparent   "
             onClick={() => setIsLoggedIn(false)}
           >
             LogIn
           </button>
         ) : (
           <button
-            className=" p-2 rounded-2xl border-2 border-solid border-white text-white bg-transparent   "
+            className="py-1 px-3 rounded-sm border-2 border-solid border-gray-500 text-white bg-transparent   "
             onClick={() => setIsLoggedIn(true)}
           >
             LogOut
@@ -78,6 +83,8 @@ const Header = () => {
           {getThemeSVG()}
         </button>
         <div>{isonline ? "📶" : " ⛔"}</div>
+        </div>
+        
       </div>
 
       <div
