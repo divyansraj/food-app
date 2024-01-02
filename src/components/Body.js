@@ -1,16 +1,17 @@
 import { restaurantList, swiggyData } from "../config";
 import RestaurantCard from "./RestaurantCard";
-import { useState, useEffect } from "react";
+import { useState, useEffect,useContext } from "react";
 import { Shimmer } from "./Shimmer";
 import { Link } from "react-router-dom";
 import { filterData } from "../utils/helper";
 import useGetRestaurants from "../utils/useGetRestaurants";
 import useOnline from "../utils/useOnline";
-
+import UserContext from "../utils/UserContext"
 const Body = () => {
   const [searchTxt, setSearchTxt] = useState([]);
-  const { filteredRestaurants, allRestaurants, setFilteredRestaurants } =
-    useGetRestaurants();
+  const { filteredRestaurants, allRestaurants, setFilteredRestaurants } = useGetRestaurants();
+
+  const {user,setUser} = useContext(UserContext);
 
   const isonline = useOnline();
   if (!isonline) {
@@ -31,7 +32,7 @@ const Body = () => {
       <div className=" w-full">
         <input
           type="text"
-          className=" w-[600px] text-black p-4 rounded-l-2xl border-2 border-solid border-[rgb(103, 98, 98)] outline-none mb-5"
+          className=" w-[400px] text-black py-1 px-3 rounded-l-2xl border-2 border-solid border-[rgb(103, 98, 98)] outline-none mb-5"
           placeholder="Search for restaurant and food"
           value={searchTxt}
           onChange={(e) => {
@@ -39,7 +40,7 @@ const Body = () => {
           }}
         />
         <button
-          className="rounded-r-2xl p-4 text-black border-2 border-solid outline-none bg-transparent "
+          className="rounded-r-2xl py-1 px-3 text-black border-2 border-solid outline-none bg-transparent "
           onClick={() => {
             const data = filterData(searchTxt, allRestaurants);
             setFilteredRestaurants(data);
@@ -47,6 +48,17 @@ const Body = () => {
         >
           Search
         </button>
+        <input
+        className="border-2 p-2 border-gray-500"
+          placeholder="UserContext"
+          value={user.name}
+          onChange={(e) => {
+            setUser({
+              name : e.target.value,
+              email: "utypingChanges.com",
+            })
+          }}
+        />
       </div>
       <div className="flex justify-center flex-wrap gap-12">
         {filteredRestaurants?.length == 0 ? (

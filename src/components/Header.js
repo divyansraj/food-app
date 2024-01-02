@@ -1,6 +1,7 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
 import useOnline from "../utils/useOnline";
+import UserContext from "../utils/UserContext";
 const loggedInUser = () => {
   //authetication api
   return true;
@@ -19,6 +20,7 @@ const Title = () => {
 };
 
 const Header = () => {
+  const {user} = useContext(UserContext);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [theme, setTheme] = useState("light");
   const isonline = useOnline();
@@ -63,13 +65,14 @@ const Header = () => {
             {/* <button className="btn">Submit Recipe</button> */}
           </ul>
         </div>
+        <h1 className="font-bold">{user.name} - {user.email}   </h1>
         <div className=" w-52 flex justify-center items-center gap-5">
         {isLoggedIn ? (
           <button
             className="py-1 px-5 rounded-sm border-2 border-solid border-gray-500 text-white bg-transparent   "
             onClick={() => setIsLoggedIn(false)}
           >
-            LogIn
+          LogIn
           </button>
         ) : (
           <button
