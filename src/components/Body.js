@@ -55,7 +55,7 @@ const Body = () => {
           onChange={(e) => {
             setUser({
               name : e.target.value,
-              email: "utypingChanges.com",
+              email: "typingChanges.com",
             })
           }}
         />
