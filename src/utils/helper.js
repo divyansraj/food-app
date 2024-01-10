@@ -6,3 +6,13 @@ export function filterData(searchTxt, allRestaurants) {
   });
   return filterData;
 }
+export const toggleTheme = () => {
+  const [theme, setTheme] = useState("light");
+  if (theme === "light") {
+    setTheme("dark");
+  } else {
+    setTheme("light");
+  }
+  return {theme,setTheme};
+};
+

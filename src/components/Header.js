@@ -2,6 +2,7 @@ import { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
 import useOnline from "../utils/useOnline";
 import UserContext from "../utils/UserContext";
+import { toggleTheme , getThemeSVG } from "../utils/helper";
 const loggedInUser = () => {
   //authetication api
   return true;
@@ -22,23 +23,16 @@ const Title = () => {
 const Header = () => {
   const {user} = useContext(UserContext);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [theme, setTheme] = useState("light");
+  const {theme, setTheme} = useState("light");
   const isonline = useOnline();
-  const toggleTheme = () => {
-    if (theme === "light") {
-      setTheme("dark");
-    } else {
-      setTheme("light");
-    }
-  };
-
-  const getThemeSVG = () => {
-    return theme === "light" ? <p>🔅</p> : <p>🌙</p>;
-  };
+  
 
   useEffect(() => {
     document.body.className = theme;
   }, [theme]);
+  const getThemeSVG = () => {
+    return theme === "light" ? <p>🔅</p> : <p>🌙</p>;
+  };
   return (
     <div className="header">
       <div className="bg-[#0b1419] flex justify-between items-center p-4 px-10">

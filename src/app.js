@@ -12,6 +12,9 @@ import Profile from "./components/Profile";
 import Recipie from "./components/Recipie";
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 import UserContext from "./utils/UserContext";
+import { Provider } from "react-redux"; 
+import store from "./utils/store";
+
 
 const Instamart = lazy(() => import("./components/Instamart"));
 
@@ -25,6 +28,7 @@ const AppLayout = () => {
     //setuser
   });
   return (
+    <Provider store={store}>
     <UserContext.Provider
       value={{
         user: user,
@@ -35,6 +39,7 @@ const AppLayout = () => {
       <Outlet />
       <Footer />
     </UserContext.Provider>
+    </Provider>
   );
 };
 
