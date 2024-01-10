@@ -28,7 +28,6 @@ const AppLayout = () => {
     //setuser
   });
   return (
-    <Provider store={store}>
     <UserContext.Provider
       value={{
         user: user,
@@ -39,7 +38,6 @@ const AppLayout = () => {
       <Outlet />
       <Footer />
     </UserContext.Provider>
-    </Provider>
   );
 };
 
